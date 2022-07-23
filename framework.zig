@@ -157,9 +157,22 @@ pub const InterfaceFunctions = extern struct {
     len:  usize,
 };
 
+pub const LogLevel = enum(u8) {
+    Critical,
+    Error,
+    Warning,
+    MainInfo,
+    AdditionInfo,
+    DebugLevel0,
+    DebugLevel1,
+    DebugLevel2,
+    DebugLevel3,
+    DebugLevel4,
+};
+
 pub const Core = extern struct {
     exit: fn() callconv(.C) void,
-    log: fn(String) callconv(.C) void,
+    log: fn(Module, LogLevel, String) callconv(.C) void,
     get_allocator: fn (Module) callconv(.C) Allocator,
     get_if: fn(String) callconv(.C) ?*const Interface,
     get_if_specific: fn(String, Version) callconv(.C) ?*const Interface,
