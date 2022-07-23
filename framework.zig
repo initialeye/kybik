@@ -174,5 +174,4 @@ pub const Core = extern struct {
     schedule_task: fn(Module, SchedCallback, u64, CbCtx) callconv(.C) void,
     iterate_files: fn(Module, String, String, FileIterateCallback) callconv(.C) void,
     nanotime: fn() callconv(.C) u64,
-    testf: fn(u64) callconv(.C) void,
 };
