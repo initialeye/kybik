@@ -13,6 +13,7 @@ pub const Deps = Slice(Dependency);
 
 pub const SubCallback = fn(String, CbCtx) callconv(.C) void;
 pub const SchedCallback = fn(CbCtx) callconv(.C) void;
+pub const FileIterateCallback = fn(String, String) callconv(.C) void;
 
 pub const stdalign = @alignOf(*void);
 
@@ -171,6 +172,7 @@ pub const Core = extern struct {
     register: fn (Module, String) callconv(.C) *const Signal,
     emit: fn (*const Signal, CbCtx) callconv(.C) usize,
     schedule_task: fn(Module, SchedCallback, u64, CbCtx) callconv(.C) void,
+    iterate_files: fn(Module, String, String, FileIterateCallback) callconv(.C) void,
     nanotime: fn() callconv(.C) u64,
     testf: fn(u64) callconv(.C) void,
 };
